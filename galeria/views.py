@@ -4,8 +4,9 @@ from galeria.models import Fotografia
 
 
 def index(request):
-    fotografias = Fotografia.objects.all()
-
+    fotografias = (
+        Fotografia.objects.all().order_by("-id").filter(publicada=True)
+    )
     return render(request, "galeria/index.html", {"cards": fotografias})
 
 
